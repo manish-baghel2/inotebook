@@ -29,10 +29,11 @@ const NoteState = (props) => {
                 'Content-Type': 'application/json',
                 'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzYTczMDM1MzRjOGQxODBiZmZjNjM2In0sImlhdCI6MTY2NDc3NTU2Nn0.wtpwsaHHAJ163Evm-n2XiUivLeyNKSJ5PZ-RHuweY9M'
             },
-            body: JSON.stringify({title, description, tag})
+            body: JSON.stringify({ title, description, tag })
         });
         const note = await response.json();
         setNotes(notes.concat(note));
+        await getNotes();
     }
     // delete a note
     const deleteNote = async (id) => {
@@ -43,7 +44,7 @@ const NoteState = (props) => {
                 'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzYTczMDM1MzRjOGQxODBiZmZjNjM2In0sImlhdCI6MTY2NDc3NTU2Nn0.wtpwsaHHAJ163Evm-n2XiUivLeyNKSJ5PZ-RHuweY9M'
             }
         });
-        const json = response.json(); 
+        const json = response.json();
         console.log(json);
         const newNotes = notes.filter((note) => { return note._id !== id })
         setNotes(newNotes);
@@ -77,7 +78,7 @@ const NoteState = (props) => {
     }
 
     return (
-        <noteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes}}>
+        <noteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
             {props.children}
         </noteContext.Provider>
     )
