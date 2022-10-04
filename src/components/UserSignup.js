@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 const UserSignup = (props) => {
-    const [credentials, setCredentials] = useState({ name: "", email: "", password: "",cpassword:"" });
+    const [credentials, setCredentials] = useState({ name: "", email: "", password: "", cpassword: "" });
     let history = useNavigate();
-    const {name, email, password } = credentials;
+    const { name, email, password } = credentials;
     const handleSubmit = async (e) => {
         e.preventDefault();
         const response = await fetch("http://localhost:5000/api/auth/createuser", {
@@ -21,10 +21,10 @@ const UserSignup = (props) => {
             localStorage.setItem('token', json.authtoken);
             // history.push("/");        
             history("/", { replace: true });
-            props.showAlert("Account created successfully","success");
+            props.showAlert("Account created successfully", "success");
         }
         else {
-            props.showAlert("invalid credentials","danger");
+            props.showAlert("invalid credentials", "danger");
         }
     }
 
@@ -32,25 +32,26 @@ const UserSignup = (props) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
     return (
-        <div>
+        <div className='mt-2'>
+            <h2 className='my-2'>Create an acccoun to use iNoteBook</h2>
             <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                     <label htmlFor="name">Name</label>
+                <div className="form-group my-2">
+                    <label htmlFor="name" className='mx-1'>Name</label>
                     <input type="text" className="form-control my-1" id="name" aria-describedby="emailHelp" name="name" onChange={onChange} placeholder="Enter name" />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email address</label>
+                <div className="form-group my-2">
+                    <label htmlFor="email" className='mx-1'>Email address</label>
                     <input name="email" type="text" className="form-control my-1" id="email" aria-describedby="emailHelp" onChange={onChange} placeholder="Enter email" />
                     <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                 </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input name="password" type="password" className="form-control my-1" id="password" placeholder="Password" minLength={5} required onChange={onChange}/>
+                <div className="form-group my-2">
+                    <label htmlFor="password" className='mx-1'>Password</label>
+                    <input name="password" type="password" className="form-control my-1" id="password" placeholder="Password" minLength={5} required onChange={onChange} />
 
-                    <label htmlFor="cpassword">Confirm Password</label>
-                    <input name="cpassword" type="password" className="form-control my-1" id="cpassword" placeholder="Confirm Password" onChange={onChange} minLength = {5} required/>
+                    <label htmlFor="cpassword" className='mx-1'>Confirm Password</label>
+                    <input name="cpassword" type="password" className="form-control my-1" id="cpassword" placeholder="Confirm Password" onChange={onChange} minLength={5} required />
                 </div>
-                <button type="submit" className="btn btn-primary my-1">Submit</button>
+                <button type="submit" className="btn btn-primary my-3">Submit</button>
             </form>
         </div>
     )
