@@ -14,12 +14,12 @@ const NoteItem = (props) => {
                             <span className={`position-absolute top-0 translate-middle badge rounded-pill bg-warning`} style={{ left: "50%", zIndex: "1" }}>
                                 {note.tag}
                             </span></h5>
-                    <i className="far fa-trash-alt mx-2" onClick={() => { deleteNote(note._id) }}></i>
-                    <i className="far fa-edit mx-2" onClick={() => { updateNote(note) }}></i>
+                        <i className="far fa-trash-alt mx-2" onClick={() => { deleteNote(note._id); props.showAlert("deleted successfully", 'success') }}></i>
+                        <i className="far fa-edit mx-2" onClick={() => { updateNote(note) }}></i>
+                    </div>
+                    <p className="card-text">{note.description}</p>
                 </div>
-                <p className="card-text">{note.description}</p>
             </div>
-        </div>
         </div >
     )
 }
