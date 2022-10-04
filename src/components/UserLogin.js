@@ -19,8 +19,8 @@ const UserLogin = (props) => {
             // redirect
             localStorage.setItem('token', json.authtoken);
             // history.push("/");        
-            history("/", { replace: true });
             props.showAlert("Login Successfully","success");
+            history("/", { replace: true });
         }
         else {
             props.showAlert("invalid credentials","danger");
