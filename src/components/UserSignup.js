@@ -57,4 +57,23 @@ const UserSignup = (props) => {
     )
 }
 
+import React from 'react'
+
+export default function UserSignup() {
+  return (
+    <div>UserSignup</div>
+  )
+}
+
+import React, { Component } from 'react'
+
+export default class UserSignup extends Component {
+  render() {
+    return (
+      <div>UserSignup</div>
+    )
+  }
+}
+
+
 export default UserSignup
